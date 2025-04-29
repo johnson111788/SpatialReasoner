@@ -1,6 +1,8 @@
 # SpatialReasoner
 
 
+![Motivation Thinking](assests/motivation_thinking.png)
+
 ## Installation
 
 ```bash
