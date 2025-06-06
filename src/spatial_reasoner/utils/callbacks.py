@@ -71,6 +71,16 @@ class PushToHubRevisionCallback(TrainerCallback):
                 future.add_done_callback(run_benchmark_callback)
 
 
+class EarlyStoppingCallback(TrainerCallback):
+    def __init__(self, stop_step=1000):
+        self.stop_step = stop_step
+
+    def on_step_end(self, args, state, control, **kwargs):
+        if state.global_step >= self.stop_step:
+            control.should_training_stop = True
+        return control
+
+
 CALLBACKS = {
     "push_to_hub_revision": PushToHubRevisionCallback,
 }

@@ -60,6 +60,10 @@ class GRPOConfig(trl.GRPOConfig):
         default=None,
         metadata={"help": ("The project to store runs under.")},
     )
+    stop_steps: Optional[int] = field(
+        default=10000,
+        metadata={"help": "Number of steps for the early stop."},
+    )
 
 
 @dataclass
@@ -111,4 +115,8 @@ class SFTConfig(trl.SFTConfig):
     wandb_project: Optional[str] = field(
         default=None,
         metadata={"help": ("The project to store runs under.")},
+    )
+    stop_steps: Optional[int] = field(
+        default=7000,
+        metadata={"help": "Number of steps for the early stop."},
     )

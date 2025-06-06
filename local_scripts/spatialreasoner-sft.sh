@@ -16,4 +16,5 @@ ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_con
     --output_dir checkpoints/${WANDB_RUN_NAME} \
     --model_name_or_path $model_name \
     --dataset_name $dataset_name \
-    --run_name $WANDB_RUN_NAME
+    --run_name $WANDB_RUN_NAME \
+    --stop_steps 7000

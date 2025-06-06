@@ -24,7 +24,7 @@ from transformers import Qwen2_5_VLForConditionalGeneration, Qwen2_5_VLProcessor
 from transformers.trainer_utils import get_last_checkpoint
 from transformers import set_seed
 
-from spatial_reasoner.utils.callbacks import get_callbacks
+from spatial_reasoner.utils.callbacks import get_callbacks, EarlyStoppingCallback
 from spatial_reasoner.configs import SFTConfig
 from spatial_reasoner.utils.wandb_logging import init_wandb_training
 from trl import (
@@ -178,7 +178,7 @@ def main(script_args, training_args, model_args):
         data_collator=collate_fn,
         peft_config=get_peft_config(model_args),
         processing_class=processor.tokenizer,
-        callbacks=get_callbacks(training_args, model_args),
+        callbacks=get_callbacks(training_args, model_args)+[EarlyStoppingCallback(stop_step=training_args.stop_steps)],
     )
 
     ###############

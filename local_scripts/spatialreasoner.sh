@@ -17,4 +17,5 @@ ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_con
     --model_name_or_path $model_name \
     --dataset_name $dataset_name \
     --run_name $WANDB_RUN_NAME \
-    --hub_model_id $WANDB_RUN_NAME
+    --hub_model_id $WANDB_RUN_NAME \
+    --stop_steps 6000

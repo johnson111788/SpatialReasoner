@@ -9,7 +9,7 @@ dataset_name: ccvl/OpenImages_3DSR_mar16_filtered1200
 dataset_test_split: val
 dataset_configs:
 - all
-data_dir: ./data/openimages/train/
+data_dir: ./data/openimages/
 # Num processes is less by 1 as vLLM is using 1 GPU
 num_processes: 3
 

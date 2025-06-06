@@ -3,7 +3,7 @@ gpu_ids=0,1,2,3
 result_name=SpatialReasoner
 
 datasets=("3DSRBench" "CV-Bench-3D")
-prompt_paths=("./data/3dsrbench_v1_vlmevalkit_circular.tsv" "CV-Bench-3D.tsv")
+prompt_paths=("./data/3dsrbench_v1_vlmevalkit_circular.tsv" "./data/CV-Bench-3D.tsv")
 
 for i in "${!datasets[@]}"; do
     dataset=${datasets[$i]}
@@ -11,7 +11,7 @@ for i in "${!datasets[@]}"; do
 
     echo $result_name $dataset 
     model_path=YOUR_SpatialReasoner_MODEL_NAME/PATH
-    output_path=YOUR_OUTPUT_PATH/${result_name}_${dataset}.xlsx
+    output_path=output/${result_name}_${dataset}.xlsx
 
     python src/eval/infer.py \
         --model_path ${model_path} \

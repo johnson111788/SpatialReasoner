@@ -9,7 +9,7 @@
 conda create -n spatial_reasoner python=3.11 -y && conda activate spatial_reasoner
 pip3 install -e ".[dev]"
 pip3 install flash-attn --no-build-isolation
-pip3 install qwen_vl_utils
+pip3 install qwen_vl_utils xlsxwriter
 ```
 
 
@@ -17,16 +17,20 @@ pip3 install qwen_vl_utils
 
 
 ### Download Training Data 
-To download the Open Images Dataset, please run:
 
 ```bash
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip awscli-bundle.zip
-./awscli-bundle/install -b ~/bin/aws
-aws s3 --no-sign-request sync s3://open-images-dataset/train [target_dir/train]
-```
-For more details, please refer to [open-images-dataset](https://github.com/cvdfoundation/open-images-dataset?tab=readme-ov-file#download-images-with-bounding-boxes-annotations).
+mkdir ./data && cd ./data
 
+# OpenImages
+wget https://huggingface.co/datasets/ccvl/SpatialReasonerTrain/resolve/main/openimages.tar
+tar -xvf openimages.tar
+
+# LLaVA
+wget https://huggingface.co/datasets/ccvl/SpatialReasonerTrain/resolve/main/llava.tar
+tar -xvf llava.tar
+
+cd ../
+```
 
 ### Training 
 - SpatialReasoner-SFT
@@ -48,7 +52,7 @@ bash local_scripts/spatialreasoner.sh
 ### Download Evaluation Data
 
 ```sh
-mkdir ./data && cd ./data
+cd ./data
 
 # 3DSRBench
 wget https://huggingface.co/datasets/ccvl/3DSRBench/resolve/main/3dsrbench_v1_vlmevalkit_circular.tsv

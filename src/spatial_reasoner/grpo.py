@@ -23,7 +23,7 @@ from transformers.trainer_utils import get_last_checkpoint
 from datasets import load_dataset
 import datasets
 
-from spatial_reasoner.utils.callbacks import get_callbacks
+from spatial_reasoner.utils.callbacks import get_callbacks, EarlyStoppingCallback
 from spatial_reasoner.configs import GRPOConfig
 from spatial_reasoner.trainer import Qwen2VLGRPOTrainer
 from spatial_reasoner.reward import accuracy_reward, format_reward
@@ -165,7 +165,7 @@ def main(script_args, training_args, model_args):
         max_pixels=training_args.max_pixels,
         min_pixels=training_args.min_pixels,
         data_dir=training_args.data_dir,
-        callbacks=get_callbacks(training_args, model_args),
+        callbacks=get_callbacks(training_args, model_args)+[EarlyStoppingCallback(stop_step=training_args.stop_steps)],
     )
 
     ###############
