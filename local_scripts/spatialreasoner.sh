@@ -19,3 +19,8 @@ ACCELERATE_LOG_LEVEL=info accelerate launch --config_file recipes/accelerate_con
     --run_name $WANDB_RUN_NAME \
     --hub_model_id $WANDB_RUN_NAME \
     --stop_steps 6000
+
+# Download preprocessor_config.json and chat_template.json
+# https://github.com/huggingface/transformers/issues/29790#issuecomment-2016755078
+wget -P checkpoints/${WANDB_RUN_NAME} https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/main/preprocessor_config.json
+wget -P checkpoints/${WANDB_RUN_NAME} https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/main/chat_template.json
