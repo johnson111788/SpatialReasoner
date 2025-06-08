@@ -1,5 +1,11 @@
 # SpatialReasoner
 
+Official implementation of **SpatialReasoner**, from the following paper
+
+[SpatialReasoner: Towards Explicit and Generalizable 3D Spatial Reasoning](https://spatial-reasoner.github.io/).<br/>
+[Wufei Ma](https://wufeim.github.io/), [Yu-Cheng Chou](https://sites.google.com/view/yu-cheng-chou), [Qihao Liu](https://qihao067.github.io/), [Xingrui Wang](https://xingruiwang.github.io/), [Celso de Melo](https://celsodemelo.net/), [Jianwen Xie](http://www.stat.ucla.edu/~jxie/), and [Alan Yuille](https://www.cs.jhu.edu/~ayuille/)<br/>
+Johns Hopkins University<br/>
+[[`arXiv`](http://arxiv.org/abs/2504.20024)] [[`Project Page`](https://spatial-reasoner.github.io/)]
 
 ![Motivation Thinking](assests/motivation_thinking.png)
 
@@ -88,3 +94,16 @@ bash local_scripts/infer_spatialreasoner.sh
 ```
 
 Results for `CVBench3D` are printed to the terminal (stdout), and the final results for `3DSRBench` are saved to `results_3DSRBench.csv`.
+
+## Citation
+
+If you find this repository helpful, please consider citing:
+
+```
+@article{ma2025spatialreasoner,
+  title={SpatialReasoner: Towards Explicit and Generalizable 3D Spatial Reasoning},
+  author={Ma, Wufei and Chou, Yu-Cheng and Liu, Qihao and Wang, Xingrui and de Melo, Celso and Xie, Jianwen and Yuille, Alan},
+  journal={arXiv preprint arXiv:2504.20024},
+  year={2025}
+}
+```
