@@ -5,6 +5,8 @@
 
 ## Installation
 
+Setup Python dependencies.
+
 ```bash
 conda create -n spatial_reasoner python=3.11 -y && conda activate spatial_reasoner
 pip3 install -e ".[dev]"
@@ -12,11 +14,17 @@ pip3 install flash-attn --no-build-isolation
 pip3 install qwen_vl_utils xlsxwriter
 ```
 
+Setup evaluation environment.
 
-## Training 
+```bash
+git submodule update --init --recursive
+cd VLMEvalKit
+pip install -e .
+```
 
+## Training
 
-### Download Training Data 
+### Download Training Data
 
 ```bash
 mkdir ./data && cd ./data
@@ -32,7 +40,7 @@ tar -xvf llava.tar
 cd ../
 ```
 
-### Training 
+### Training
 - SpatialReasoner-SFT
 ```bash
 bash local_scripts/spatialreasoner-sft.sh
@@ -49,6 +57,7 @@ bash local_scripts/spatialreasoner.sh
 ```
 
 ## Evaluation
+
 ### Download Evaluation Data
 
 ```sh
@@ -78,6 +87,4 @@ bash local_scripts/infer_spatialreasoner-zero.sh
 bash local_scripts/infer_spatialreasoner.sh
 ```
 
-### Evaluation
-
-We use our inference script for multi-batch inference and use [VLMEvalKit](https://github.com/open-compass/VLMEvalKit) for evaluation. Please move the output file from `YOUR_OUTPUT_PATH` to VLMEvalKit and follow their instruction for evluation. Note that the final score for 3DSRBench will require additional calculation using [compute_3drbench_results_circular.py](https://huggingface.co/datasets/ccvl/3DSRBench/blob/main/compute_3drbench_results_circular.py)
+Results for `CVBench3D` are printed to the terminal (stdout), and the final results for `3DSRBench` are saved to `results_3DSRBench.csv`.
