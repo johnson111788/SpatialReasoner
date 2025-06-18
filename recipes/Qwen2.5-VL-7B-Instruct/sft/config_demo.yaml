@@ -5,7 +5,7 @@ torch_dtype: bfloat16
 attn_implementation: flash_attention_2
 
 # Data training arguments
-dataset_name: ccvl/OpenImages_3DSR_apr23_sampled24k_NT_llava_24k
+dataset_name: ccvl/SpatialReasonerTrain-SFT
 dataset_test_split: val
 dataset_configs:
 - all 
