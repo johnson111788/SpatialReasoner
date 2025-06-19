@@ -7,7 +7,12 @@ Official implementation of **SpatialReasoner**, from the following paper
 Johns Hopkins University<br/>
 [[`arXiv`](http://arxiv.org/abs/2504.20024)] [[`Project Page`](https://spatial-reasoner.github.io/)]
 
-![Motivation Thinking](assests/motivation_thinking.png)
+<p align="center">
+    <img src="assests/motivation_thinking.png"/> <br />
+    <em> 
+    Comparing 3D spatial reasoning of our SpatialReasoner with previous state-of-the-art models. Our SpatialReasoner builds on explicit 3D representations, performs 3D computation, and reasons about the final answer. Although Gemini 2.0 can also break down complex 3D spatial reasoning questions into small and tractable steps, it lacks reliable 3D computation that leads to the correct answer.
+    </em>
+</p>
 
 ## Installation
 
@@ -20,7 +25,7 @@ pip3 install flash-attn --no-build-isolation
 pip3 install qwen_vl_utils xlsxwriter
 ```
 
-Setup evaluation environment.
+Setup evaluation *environment.*
 
 ```bash
 git submodule update --init --recursive
@@ -63,6 +68,14 @@ bash local_scripts/spatialreasoner.sh
 ```
 
 ## Evaluation
+
+
+<p align="center">
+    <img src="assests/benchmark.png"/> <br />
+    <em> 
+    Comparison with previous state-of-the-art methods on 3DSRBench. Our SpatialReasoner outperforms previous open-source and proprietary methods on challenging 3D spatial reasoning problems in 3DSRBench.
+    </em>
+</p>
 
 ### Download Evaluation Data
 
