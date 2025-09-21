@@ -26,9 +26,9 @@ import datasets
 from spatial_reasoner.utils.callbacks import get_callbacks, EarlyStoppingCallback
 from spatial_reasoner.configs import GRPOConfig
 from spatial_reasoner.trainer import Qwen2VLGRPOTrainer
-from spatial_reasoner.reward import accuracy_reward, format_reward
+from spatial_reasoner.reward import accuracy_reward, format_reward, process_reward, reasoning_steps_reward
 from spatial_reasoner.utils.wandb_logging import init_wandb_training
-from spatial_reasoner.utils.utils import make_conversation_oi
+from spatial_reasoner.utils.utils import make_conversation_oi, make_conversation_oi_3DRwd
 from trl import ModelConfig, ScriptArguments, TrlParser, get_peft_config
 
 
@@ -41,7 +41,7 @@ class GRPOScriptArguments(ScriptArguments):
 
     Args:
         reward_funcs (`list[str]`):
-            List of reward functions. Possible values: 'accuracy', 'format', 'reasoning_steps'.
+            List of reward functions. Possible values: 'accuracy', 'format', 'process', 'reasoning_steps'.
         cosine_min_value_wrong (`float`):
             Minimum reward for cosine scaling for wrong answers.
         cosine_max_value_wrong (`float`):
@@ -57,7 +57,7 @@ class GRPOScriptArguments(ScriptArguments):
     reward_funcs: list[str] = field(
         default_factory=lambda: ["accuracy", "format"],
         metadata={
-            "help": "List of reward functions. Possible values: 'accuracy', 'format', 'reasoning_steps'"
+            "help": "List of reward functions. Possible values: 'accuracy', 'format', 'process', 'reasoning_steps'"
         },
     )
     cosine_min_value_wrong: float = field(
@@ -132,12 +132,14 @@ def main(script_args, training_args, model_args):
     # Get reward functions
     REWARD_FUNCS_REGISTRY = {
         "accuracy": accuracy_reward,
-        "format": format_reward
+        "format": format_reward,
+        "process": process_reward,
+        "reasoning_steps": reasoning_steps_reward,
     }
     reward_funcs = [REWARD_FUNCS_REGISTRY[func] for func in script_args.reward_funcs]
 
     dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
-    dataset = dataset.map(make_conversation_oi, load_from_cache_file=False)
+    dataset = dataset.map(make_conversation_oi_3DRwd, load_from_cache_file=False) if 'process' in script_args.reward_funcs else dataset.map(make_conversation_oi, load_from_cache_file=False)
     
     logger.info("*** Initializing model kwargs ***")
     torch_dtype = (
