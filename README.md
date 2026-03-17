@@ -33,6 +33,17 @@ cd VLMEvalKit
 pip install -e .
 ```
 
+To ensure compatibility, please follow this exact sequence.
+```bash
+cd ..
+pip install "numpy<2.0.0,>=1.24.0" "typer<0.10.0"
+pip install -e ".[dev]" --no-deps
+```
+Use torch 2.6.0 specifically to fix wrap_triton issues.
+```bash
+pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
 ## Training
 
 ### Download Training Data
