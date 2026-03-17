@@ -44,7 +44,7 @@ Example (for CUDA 12.4):
 ```bash
 pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 ```
-For other versions, please refer to pytorch.org.
+For other versions, please refer to https://pytorch.org.
 
 ## Training
 
