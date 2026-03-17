@@ -40,9 +40,11 @@ pip install "numpy<2.0.0,>=1.24.0" "typer<0.10.0"
 pip install -e ".[dev]" --no-deps
 ```
 Use torch 2.6.0 specifically to fix wrap_triton issues.
+Example (for CUDA 12.4):
 ```bash
 pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 ```
+For other versions, please refer to pytorch.org.
 
 ## Training
 
